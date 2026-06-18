@@ -633,59 +633,84 @@
     }
 
     /* ===========================
-       FOTOS EXTRA GRID
+       FOTOS EXTRA — POLAROID SCATTER
     =========================== */
-    .extra-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    .extra-grid-item {
+    .extra-scatter {
       position: relative;
-      overflow: hidden;
-      background: #111;
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0;
+      padding: 20px 10px 40px;
     }
 
-    .extra-grid-item:first-child {
-      grid-column: span 2;
-      grid-row: span 1;
+    .polaroid {
+      background: #f5f0e8;
+      padding: 10px 10px 32px;
+      box-shadow: 3px 4px 18px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.4);
+      cursor: pointer;
+      position: relative;
+      margin: -8px;
+      transition: transform 0.2s, box-shadow 0.2s, z-index 0s;
+      z-index: 1;
     }
 
-    .extra-grid-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .polaroid:hover {
+      transform: scale(1.12) rotate(0deg) !important;
+      box-shadow: 6px 10px 30px rgba(0,0,0,0.8);
+      z-index: 20;
+    }
+
+    .polaroid img {
       display: block;
-      min-height: 200px;
-      filter: grayscale(20%) contrast(1.05);
-      transition: filter 0.3s, transform 0.4s;
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      object-position: center top;
     }
 
-    .extra-grid-item:hover img {
-      filter: grayscale(0%) contrast(1.08);
-      transform: scale(1.04);
+    .polaroid-caption {
+      font-family: 'Special Elite', monospace;
+      font-size: 11px;
+      color: #333;
+      text-align: center;
+      padding-top: 6px;
+      letter-spacing: 1px;
     }
 
-    .extra-grid-item .classified-stamp {
+    /* Lightbox for polaroids */
+    #polaroid-lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #polaroid-lightbox.open { display: flex; }
+
+    #polaroid-lightbox img {
+      max-width: 88vw;
+      max-height: 88vh;
+      object-fit: contain;
+      box-shadow: 0 0 60px rgba(0,0,0,0.8);
+    }
+
+    #polaroid-lightbox-close {
       position: absolute;
-      top: 10px;
-      right: 10px;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 12px;
-      letter-spacing: 3px;
-      color: rgba(204,0,0,0.7);
-      border: 1px solid rgba(204,0,0,0.5);
-      padding: 2px 8px;
-      transform: rotate(6deg);
-      pointer-events: none;
+      top: 18px; right: 22px;
+      background: none; border: none;
+      color: #fff; font-size: 40px;
+      cursor: pointer; line-height: 1;
     }
 
     @media (max-width: 600px) {
-      .extra-grid { grid-template-columns: repeat(2, 1fr); }
-      .extra-grid-item:first-child { grid-column: span 2; }
+      .polaroid img { width: 130px; height: 130px; }
+      .polaroid { padding: 8px 8px 26px; margin: -4px; }
     }
 
     /* ===========================
@@ -1213,10 +1238,16 @@
 <!-- ============================
      FOTOS EXTRA
 ============================= -->
-<section class="section" id="fotos-extra" style="background:#0d0d0d; padding-top:50px; padding-bottom:50px;">
+<section class="section" id="fotos-extra" style="background:#0d0d0d; padding-top:50px; padding-bottom:60px;">
   <h2 class="section-title">📸 EVIDENCIA CLASIFICADA</h2>
-  <div class="extra-grid" id="extra-grid"></div>
+  <div class="extra-scatter" id="extra-scatter"></div>
 </section>
+
+<!-- Polaroid Lightbox -->
+<div id="polaroid-lightbox" onclick="closePolaroid(event)">
+  <button id="polaroid-lightbox-close" onclick="closePolaroid()">×</button>
+  <img id="polaroid-lightbox-img" src="" alt="">
+</div>
 
 <div class="tape-divider"></div>
 
@@ -1479,18 +1510,39 @@ const extraPhotos = [
   'photos/extra_6.jpg'
 ];
 
+const polaroidCaptions = [
+  'Exhibit 001', 'Exhibit 002', 'Exhibit 003',
+  'Exhibit 004', 'Exhibit 005', 'Exhibit 006'
+];
+
+const polaroidRotations = [-6, 4, -3, 7, -5, 3, -8, 5, -2, 6, -4, 8];
+
 function renderExtras() {
-  const grid = document.getElementById('extra-grid');
-  if (!grid) return;
-  extraPhotos.forEach(src => {
+  const scatter = document.getElementById('extra-scatter');
+  if (!scatter) return;
+  extraPhotos.forEach((src, i) => {
+    const rot = polaroidRotations[i % polaroidRotations.length];
     const item = document.createElement('div');
-    item.className = 'extra-grid-item';
+    item.className = 'polaroid';
+    item.style.transform = `rotate(${rot}deg)`;
     item.innerHTML = `
       <img src="${src}" alt="Evidencia clasificada" loading="lazy">
-      <div class="classified-stamp">CLASSIFIED</div>
+      <div class="polaroid-caption">${polaroidCaptions[i]}</div>
     `;
-    grid.appendChild(item);
+    item.addEventListener('click', () => openPolaroid(src));
+    scatter.appendChild(item);
   });
+}
+
+function openPolaroid(src) {
+  document.getElementById('polaroid-lightbox-img').src = src;
+  document.getElementById('polaroid-lightbox').classList.add('open');
+}
+
+function closePolaroid(e) {
+  if (!e || e.target === document.getElementById('polaroid-lightbox') || e.target === document.getElementById('polaroid-lightbox-close')) {
+    document.getElementById('polaroid-lightbox').classList.remove('open');
+  }
 }
 
 // =====================
