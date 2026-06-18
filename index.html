@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Burla Mac Digitali — Hall of Shame Oficial</title>
+  <title>Mac Digitali — Hall of Shame Oficial</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚨</text></svg>">
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600;700&family=Special+Elite&display=swap" rel="stylesheet">
   <style>
@@ -559,159 +559,77 @@
     }
 
     /* ===========================
-       GALERÍA
+       FOTO STRIP
     =========================== */
-    #galeria {
-      background: #0d0d0d;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 16px;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-
-    .gallery-item {
-      position: relative;
-      cursor: pointer;
+    #foto-strip {
+      background: #080808;
       overflow: hidden;
-      background: #1a1a1a;
+      padding: 0;
     }
 
-    .gallery-item:hover .gallery-overlay {
+    .foto-strip-inner {
+      display: flex;
+      gap: 0;
+      min-height: 260px;
+    }
+
+    .strip-photo {
+      flex: 1;
+      min-width: 0;
+      position: relative;
+      overflow: hidden;
+      filter: grayscale(40%) contrast(1.1);
+      transition: flex 0.4s ease, filter 0.3s;
+    }
+
+    .strip-photo:hover {
+      flex: 2.5;
+      filter: grayscale(0%) contrast(1.05);
+    }
+
+    .strip-photo img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+
+    .strip-photo-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+      padding: 20px 10px 8px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 15px;
+      letter-spacing: 2px;
+      color: #fff;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .strip-photo:hover .strip-photo-label {
       opacity: 1;
     }
 
-    .gallery-placeholder {
-      width: 100%;
-      aspect-ratio: 4/3;
-      background: #1e1e1e;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255,255,255,0.25);
-      font-size: 11px;
-      letter-spacing: 1px;
-      border: 1px solid #2a2a2a;
-      position: relative;
-    }
-
-    .gallery-placeholder img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      inset: 0;
-    }
-
-    .gallery-placeholder .exhibit-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 48px;
-      color: rgba(255,255,255,0.06);
-    }
-
-    .classified-watermark {
-      position: absolute;
-      inset: 0;
+    .strip-photo-empty {
       display: flex;
       align-items: center;
       justify-content: center;
-      pointer-events: none;
-    }
-
-    .classified-watermark span {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 22px;
-      color: rgba(204,0,0,0.25);
-      letter-spacing: 4px;
-      border: 2px solid rgba(204,0,0,0.2);
-      padding: 4px 10px;
-      transform: rotate(-20deg);
-    }
-
-    .gallery-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(204,0,0,0.75);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-
-    .gallery-overlay span {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 20px;
-      color: #fff;
-      letter-spacing: 3px;
-    }
-
-    .gallery-caption {
+      height: 260px;
       background: #111;
-      padding: 8px 12px;
-      font-family: 'Special Elite', monospace;
+      border-right: 1px solid #1a1a1a;
+    }
+
+    .strip-photo-empty span {
+      font-family: 'Bebas Neue', sans-serif;
       font-size: 11px;
-      color: var(--yellow);
-      line-height: 1.4;
-    }
-
-    /* Lightbox */
-    #lightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.95);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    #lightbox.open {
-      display: flex;
-    }
-
-    #lightbox img {
-      max-width: 90vw;
-      max-height: 80vh;
-      object-fit: contain;
-      border: 2px solid var(--red);
-    }
-
-    #lightbox-placeholder {
-      width: min(600px, 90vw);
-      height: min(450px, 60vh);
-      background: #1a1a1a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 2px solid var(--red);
-    }
-
-    #lightbox-caption {
-      font-family: 'Special Elite', monospace;
-      color: var(--yellow);
-      font-size: 16px;
-      text-align: center;
-      max-width: 600px;
-      padding: 0 20px;
-    }
-
-    #lightbox-close {
-      position: absolute;
-      top: 20px;
-      right: 24px;
-      background: none;
-      border: none;
-      color: #fff;
-      font-size: 36px;
-      cursor: pointer;
-      line-height: 1;
+      color: rgba(255,255,255,0.08);
+      letter-spacing: 3px;
+      writing-mode: vertical-rl;
     }
 
     /* ===========================
@@ -1172,12 +1090,6 @@
   </div>
 </div>
 
-<!-- Lightbox -->
-<div id="lightbox" onclick="closeLightbox(event)">
-  <button id="lightbox-close" onclick="closeLightbox()">×</button>
-  <div id="lightbox-inner"></div>
-  <p id="lightbox-caption"></p>
-</div>
 
 <!-- ============================
      NAVIGATION
@@ -1185,7 +1097,6 @@
 <nav>
   <a href="#hero">🚨 INICIO</a>
   <a href="#acusados">👤 LOS ACUSADOS</a>
-  <a href="#galeria">📸 GALERÍA</a>
   <a href="#momentos">🏆 TOP 10</a>
   <a href="#premios">🏅 PREMIOS</a>
   <a href="#noticias">📰 NOTICIAS</a>
@@ -1204,7 +1115,7 @@
     <span class="siren-spin" style="animation-delay:-1s">🚨</span>
   </div>
 
-  <h1 class="main-title">BURLA MAC<br>DIGITALI</h1>
+  <h1 class="main-title">MAC<br>DIGITALI</h1>
 
   <p class="subtitle">El archivo oficial de vergüenzas de La Vaada Mac</p>
   <p class="hero-mac-tag">No hay website de Macabi... pero sí de Mac 🍎</p>
@@ -1232,13 +1143,11 @@
 <div class="tape-divider"></div>
 
 <!-- ============================
-     GALERÍA DE LA VERGÜENZA
+     FOTO STRIP
 ============================= -->
-<section class="section" id="galeria">
-  <h2 class="section-title">📸 EVIDENCIA FOTOGRÁFICA</h2>
-  <p style="text-align:center; color:rgba(255,255,255,0.4); margin:-30px 0 30px; font-size:14px; letter-spacing:2px;">GALERÍA DE LA VERGÜENZA</p>
-  <div class="gallery-grid" id="gallery-grid">
-    <!-- Generated by JS -->
+<section id="foto-strip">
+  <div class="foto-strip-inner" id="foto-strip-inner">
+    <!-- Filled by JS from member photos -->
   </div>
 </section>
 
@@ -1290,7 +1199,7 @@
 ============================= -->
 <footer>
   <p class="footer-title">BURLA MAC DIGITALI</p>
-  <p class="footer-copy">© 2025 Burla Mac Digitali — Todo el contenido es con amor (más o menos)</p>
+  <p class="footer-copy">© 2025 Mac Digitali — Todo el contenido es con amor (más o menos)</p>
   <p class="footer-disclaimer">
     Este sitio fue creado con fines de entretenimiento.<br>
     Si te ofendiste, eso es un tú-problema.
@@ -1334,6 +1243,7 @@
 const members = [
   {
     id: 'gabriel',
+    photo: 'photos/gabriel_1.jpg',
     name: 'GABRIEL',
     alias: 'Falso 9',
     delitos: [
@@ -1350,6 +1260,7 @@ const members = [
   },
   {
     id: 'benji',
+    photo: 'photos/benji_1.jpg',
     name: 'BENJI',
     alias: 'El TryHard',
     delitos: [
@@ -1366,6 +1277,7 @@ const members = [
   },
   {
     id: 'beny',
+    photo: 'photos/beny_1.jpg',
     name: 'BENY',
     alias: 'Benjas',
     delitos: [
@@ -1382,6 +1294,7 @@ const members = [
   },
   {
     id: 'elias',
+    photo: 'photos/elias_1.jpg',
     name: 'ELIAS',
     alias: 'El Especial',
     delitos: [
@@ -1398,6 +1311,7 @@ const members = [
   },
   {
     id: 'sarah',
+    photo: 'photos/sarah_1.jpg',
     name: 'SARAH',
     alias: 'Rosh Mac',
     delitos: [
@@ -1414,6 +1328,7 @@ const members = [
   },
   {
     id: 'camila',
+    photo: 'photos/camila_1.jpg',
     name: 'CAMILA',
     alias: '"La Chuchona" 💀',
     delitos: [
@@ -1430,6 +1345,7 @@ const members = [
   },
   {
     id: 'isaac_hamui',
+    photo: 'photos/isaac_hamui_1.jpg',
     name: 'ISAAC HAMUI',
     alias: 'Abuelito',
     delitos: [
@@ -1459,11 +1375,10 @@ function renderCards() {
       <div class="roast-tooltip">${m.roasts[Math.floor(Math.random() * m.roasts.length)]}</div>
       <div class="card-name">${m.name}</div>
       <div class="mugshot-frame" onclick="playBoing()">
-        <img id="photo-${m.id}" src="" alt="${m.name}" style="display:none">
-        <div class="mugshot-placeholder" id="placeholder-${m.id}">
-          <span class="cam-icon">📷</span>
-          <span>${m.name}</span>
-        </div>
+        ${m.photo
+          ? `<img src="${m.photo}" alt="${m.name}" style="width:100%;height:100%;object-fit:cover;object-position:center top;">`
+          : `<div class="mugshot-placeholder"><span class="cam-icon">📷</span><span>${m.name}</span></div>`
+        }
         <div class="height-ruler">
           <span>6'</span><span>5'</span><span>4'</span><span>3'</span><span>2'</span><span>1'</span>
         </div>
@@ -1486,71 +1401,24 @@ function renderCards() {
 }
 
 // =====================
-// GALLERY
+// PHOTO STRIP
 // =====================
-const galleryCaptions = [
-  'Exhibit A: La cara que pone cuando le dicen que espere',
-  'Exhibit B: Fotografía tomada momentos antes del desastre',
-  'Exhibit C: El look del "yo no fui"',
-  'Exhibit D: Evidencia del plan que "era seguro"',
-  'Exhibit E: La expresión del que llegó tarde y no lo admite',
-  'Exhibit F: El momento exacto en que se arrepintió',
-  'Exhibit G: Cara de "ya voy" siendo las 11pm',
-  'Exhibit H: La reunión que dijo duraría 10 minutos',
-  'Exhibit I: Alguien prometió no comer postre',
-  'Exhibit J: El "no soy así" en tiempo real',
-  'Exhibit K: Nota de voz de 7 minutos en progreso',
-  'Exhibit L: El último en enterarse, enterándose',
-  'Exhibit M: La excusa en proceso de fabricación',
-  'Exhibit N: El drama que no era para tanto (era para tanto)',
-  'Exhibit O: La idea que sonó bien en el momento'
-];
-
-function renderGallery() {
-  const grid = document.getElementById('gallery-grid');
-  galleryCaptions.forEach((caption, i) => {
-    const item = document.createElement('div');
-    item.className = 'gallery-item';
-    item.onclick = () => openLightbox(i, caption);
-    item.innerHTML = `
-      <div class="gallery-placeholder" id="gallery-slot-${i}">
-        <img id="gallery-photo-${i}" src="" alt="" style="display:none">
-        <span class="exhibit-num">${i+1}</span>
-        <div class="classified-watermark"><span>CLASSIFIED</span></div>
-        <div class="gallery-overlay"><span>🔍 VER</span></div>
-      </div>
-      <div class="gallery-caption">${caption}</div>
-    `;
-    grid.appendChild(item);
+function renderPhotoStrip() {
+  const strip = document.getElementById('foto-strip-inner');
+  members.forEach(m => {
+    const el = document.createElement('div');
+    if (m.photo) {
+      el.className = 'strip-photo';
+      el.innerHTML = `
+        <img src="${m.photo}" alt="${m.name}">
+        <div class="strip-photo-label">${m.name}</div>
+      `;
+    } else {
+      el.className = 'strip-photo strip-photo-empty';
+      el.innerHTML = `<span>${m.name}</span>`;
+    }
+    strip.appendChild(el);
   });
-}
-
-function openLightbox(idx, caption) {
-  const lb = document.getElementById('lightbox');
-  const inner = document.getElementById('lightbox-inner');
-  const cap = document.getElementById('lightbox-caption');
-  const photo = document.getElementById(`gallery-photo-${idx}`);
-
-  if (photo && photo.src && photo.style.display !== 'none') {
-    inner.innerHTML = `<img src="${photo.src}" alt="">`;
-  } else {
-    inner.innerHTML = `
-      <div id="lightbox-placeholder" style="width:min(600px,90vw);height:min(450px,60vh);background:#1a1a1a;display:flex;align-items:center;justify-content:center;border:2px solid var(--red);">
-        <div style="text-align:center;color:rgba(255,255,255,0.25);">
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:80px;color:rgba(255,255,255,0.05)">${idx+1}</div>
-          <div style="font-size:12px;letter-spacing:2px;">FOTO POR AGREGAR</div>
-          <div style="color:rgba(204,0,0,0.4);font-family:'Bebas Neue',sans-serif;font-size:18px;margin-top:8px;letter-spacing:3px;">CLASSIFIED</div>
-        </div>
-      </div>`;
-  }
-  cap.textContent = caption;
-  lb.classList.add('open');
-}
-
-function closeLightbox(e) {
-  if (!e || e.target === document.getElementById('lightbox') || e.target === document.getElementById('lightbox-close')) {
-    document.getElementById('lightbox').classList.remove('open');
-  }
 }
 
 // =====================
@@ -1586,8 +1454,8 @@ function renderMomentos() {
 // AWARDS
 // =====================
 const awards = [
-  { emoji: '😂', name: 'La Risa, ¿Pa Cuándo?', winner: 'Benji', speech: 'Risas por encargo desde 2005. Entrega pendiente.' },
-  { emoji: '⚽', name: '¿Será Falso 9 o Real...?', winner: 'Tuti', speech: 'Ni delantero, ni mediocampista, ni nada. Pero aquí está.' },
+  { emoji: '😂', name: 'Premio al Mejor Chiste que Solo Él se Rió', winner: 'Benji', speech: 'Tres segundos de silencio. Uno de carcajada. Era él.' },
+  { emoji: '⚽', name: '¿Será Falso 9 o Real...?', winner: 'Tuti', speech: '¿Jugará para el otro bando o se está tirando la sorpresa? La historia dirá.' },
   { emoji: '👑', name: 'Mister Mac', winner: 'Beny', speech: 'Benjas. El señor Mac en persona. No se discute.' },
   { emoji: '📰', name: 'La Revista...', winner: 'Sarah', speech: 'La revista que nunca llegó. El sueño que nunca murió.' },
   { emoji: '🎭', name: 'El Personaje...', winner: 'Elias', speech: 'El personaje principal de su propia historia. Solo él lo sabe.' },
@@ -1641,7 +1509,7 @@ const headlines = [
   {
     text: 'ÚLTIMA HORA: No existe website de Macabi — pero el de Mac ya tiene más visitas que el de la ONU',
     date: '1 Jun 2025',
-    reporter: 'Redacción Burla Mac Digitali'
+    reporter: 'Redacción Mac Digitali'
   }
 ];
 
@@ -1775,9 +1643,9 @@ function refreshRoasts() {
 // =====================
 function sharesite() {
   const url = window.location.href;
-  const text = '🚨 Burla Mac Digitali — El Hall of Shame oficial de La Vaada Mac';
+  const text = '🚨 Mac Digitali — El Hall of Shame oficial de La Vaada Mac';
   if (navigator.share) {
-    navigator.share({ title: 'Burla Mac Digitali', text, url }).catch(() => {});
+    navigator.share({ title: 'Mac Digitali', text, url }).catch(() => {});
   } else {
     navigator.clipboard.writeText(url).then(() => {
       alert('🔗 Link copiado! Mándalo al grupo 😈');
@@ -1791,11 +1659,11 @@ function sharesite() {
 // INIT
 // =====================
 renderCards();
-renderGallery();
 renderMomentos();
 renderAwards();
 renderHeadlines();
 refreshRoasts();
+renderPhotoStrip();
 
 // Remove flash overlay after animation
 setTimeout(() => {
