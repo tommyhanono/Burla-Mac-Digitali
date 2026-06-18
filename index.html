@@ -411,12 +411,13 @@
     }
 
     .card-alias {
-      font-family: 'Oswald', sans-serif;
-      font-size: 12px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(22px, 3.5vw, 30px);
       color: var(--yellow);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 14px;
+      letter-spacing: 2px;
+      line-height: 1.1;
+      margin: 28px 0 8px;
+      text-shadow: 0 0 12px rgba(255,215,0,0.35);
     }
 
     .card-delitos {
@@ -1288,18 +1289,23 @@
 ============================= -->
 <script>
 // =====================
-// VISIT COUNTER
+// VISIT COUNTER — real shared counter via countapi.xyz
 // =====================
 (function() {
-  const key = 'burla-mac-visits';
-  let count = localStorage.getItem(key);
-  if (!count) {
-    count = Math.floor(Math.random() * (1200 - 847 + 1)) + 847;
-  } else {
-    count = parseInt(count) + 1;
-  }
-  localStorage.setItem(key, count);
-  document.getElementById('visit-count').textContent = count.toLocaleString();
+  const el = document.getElementById('visit-count');
+  // Hit the shared counter (free, no auth needed)
+  fetch('https://api.countapi.xyz/hit/burla-mac-digitali/pageviews')
+    .then(r => r.json())
+    .then(data => {
+      el.textContent = data.value.toLocaleString();
+    })
+    .catch(() => {
+      // Fallback to localStorage if API is down
+      const key = 'burla-mac-visits-fallback';
+      let count = parseInt(localStorage.getItem(key) || '0') + 1;
+      localStorage.setItem(key, count);
+      el.textContent = count.toLocaleString();
+    });
 })();
 
 // =====================
@@ -1309,33 +1315,33 @@ const members = [
   {
     id: 'gabriel',
     name: 'GABRIEL',
-    alias: 'El Incomprendido',
+    alias: 'Falso 9',
     delitos: [
-      'Mandar memes a las 3am con "jajaja vean esto"',
-      'Explicar algo súper obvio con total seriedad como si fuera filosofía',
-      'Decir "no soy así" siendo exactamente así'
+      'Más pasado imposible',
+      'Solo sirve pa la escuela',
+      'La mamá tiene oficina en la escuela 🏫'
     ],
     danger: 4,
     roasts: [
-      '¿Por qué estás aquí? Nadie lo sabe. Ni tú.',
-      'El tipo que llega tarde a su propia vida.',
+      'Falso 9: ni centro, ni extremo, ni nada.',
+      'Su único gol en la vida fue el de entrada a clases.',
       'Profundo como un vaso de agua. Casi.'
     ]
   },
   {
     id: 'benji',
     name: 'BENJI',
-    alias: 'El Último en Enterarse',
+    alias: 'El TryHard',
     delitos: [
-      'Responder el chiste 3 días después con "jajajaj qué gracioso"',
-      'Preguntar algo que se respondió hace una hora en el grupo',
-      'Llegar al plan cuando ya todos van de regreso'
+      'No le da contra los hermanos',
+      'Trata pero no logra',
+      'Rosh Mac 💀'
     ],
     danger: 3,
     roasts: [
-      'Si el chiste murió, él llega al velorio.',
-      'Su internet funciona en diferido.',
-      'Vive en el pasado. Literalmente.'
+      'Esfuerzo 10/10. Resultado 2/10.',
+      'El harder que try, el less que achieve.',
+      'Rosh Mac lo dice todo. Ya.'
     ]
   },
   {
@@ -1357,17 +1363,17 @@ const members = [
   {
     id: 'elias',
     name: 'ELIAS',
-    alias: 'El que Siempre Llega Tarde',
+    alias: 'El Especial',
     delitos: [
-      'Confirmar asistencia y aparecer cuando ya están pagando la cuenta',
-      'Decir "ya voy" desde hace 40 minutos',
-      'Inventar excusas con un nivel de detalle sospechoso'
+      'Se ríe por nada 😂',
+      'Piensa que es el principal',
+      'Bro Aint Him.'
     ],
     danger: 5,
     roasts: [
-      'Para él, "ahorita" es un concepto filosófico.',
-      'La puntualidad es un mito. Elias es la prueba.',
-      'Llegó tarde a leer esto.'
+      'Especial... en su propia mente.',
+      'El principal de una serie que nadie está viendo.',
+      'Bro Aint Him. Bro sabe. Bro sigue igual.'
     ]
   },
   {
@@ -1437,7 +1443,7 @@ const members = [
   {
     id: 'camila',
     name: 'CAMILA',
-    alias: 'La Misteriosa',
+    alias: '💀',
     delitos: [
       'Aparecer y desaparecer del grupo sin explicación alguna',
       'Dejar mensajes en visto durante días y aparecer como si nada',
@@ -1479,6 +1485,7 @@ function renderCards() {
     card.className = 'member-card';
     card.innerHTML = `
       <div class="roast-tooltip">${m.roasts[Math.floor(Math.random() * m.roasts.length)]}</div>
+      <div class="card-alias">${m.alias}</div>
       <div class="mugshot-frame" onclick="playBoing()">
         <img id="photo-${m.id}" src="" alt="${m.name}" style="display:none">
         <div class="mugshot-placeholder" id="placeholder-${m.id}">
@@ -1489,14 +1496,12 @@ function renderCards() {
           <span>6'</span><span>5'</span><span>4'</span><span>3'</span><span>2'</span><span>1'</span>
         </div>
       </div>
-      <div class="peligro-badge">⚠ PELIGRO</div>
       <div class="card-name">${m.name}</div>
-      <div class="card-alias">"${m.alias}"</div>
       <ul class="card-delitos">
         ${m.delitos.map(d => `<li>${d}</li>`).join('')}
       </ul>
       <div class="danger-level">
-        <span class="danger-label">Nivel de peligro:</span>
+        <span class="danger-label">Peligro:</span>
         <span>${dangers}</span>
       </div>
       <div class="culpable-stamp">CULPABLE</div>
