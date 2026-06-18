@@ -1347,17 +1347,17 @@ const members = [
   {
     id: 'beny',
     name: 'BENY',
-    alias: 'El Duplicado Confuso',
+    alias: 'Benjas',
     delitos: [
-      'Existir con un nombre casi idéntico a otro miembro del grupo',
-      'Causar confusión crónica en el chat desde que se unió',
-      'Responder mensajes que no eran para él con total confianza'
+      '5%... 🪫',
+      'Pestañas Locas',
+      'Qué eres con Luis? 👀'
     ],
     danger: 3,
     roasts: [
-      'El universo necesitaba dos, pero con presupuesto limitado.',
-      '"¿Eso era para mí?" — Beny, siempre.',
-      'Un original hecho a medias.'
+      'Benjas. No Benji. No Benny. Benjas.',
+      '5% de batería, 5% de explicación.',
+      'Las pestañas son el menor de los misterios.'
     ]
   },
   {
@@ -1377,99 +1377,51 @@ const members = [
     ]
   },
   {
-    id: 'alesandra',
-    name: 'ALESANDRA',
-    alias: 'La Dramática Oficial',
-    delitos: [
-      'Convertir un problema de 2 minutos en una mini-serie de 8 episodios',
-      'Decir "no es para tanto" y luego hacer que sea para tanto',
-      'Mandar notas de voz de 6 minutos sobre algo que se preguntó con sí/no'
-    ],
-    danger: 5,
-    roasts: [
-      'Cada historia merece su dramatización. Especialmente las del súper.',
-      'Netflix tiene menos drama que su día a día.',
-      'Convierte el pan tostado en una épica tragedia griega.'
-    ]
-  },
-  {
-    id: 'helena',
-    name: 'HELENA',
-    alias: 'La que Sabe Demasiado',
-    delitos: [
-      'Tener información clasificada de todos en el grupo',
-      'Saber el chisme antes de que pase el chisme',
-      'Mirar fijamente mientras el grupo habla y sonreír sin decir nada'
-    ],
-    danger: 5,
-    roasts: [
-      'Tiene expedientes de todos. Actualizados.',
-      'El silencio de Helena vale más que mil palabras.',
-      'CIA pero más eficiente y con mejor estilo.'
-    ]
-  },
-  {
-    id: 'mike',
-    name: 'MIKE',
-    alias: 'El Eterno Excusa',
-    delitos: [
-      'No poder ir a nada por razones que suenan inventadas',
-      'Prometer hacer algo y recordarlo 2 semanas después',
-      'Pedir ser incluido en planes que luego cancela con 1 hora de anticipación'
-    ],
-    danger: 4,
-    roasts: [
-      'Su perro ha muerto estadísticamente 7 veces este año.',
-      'La excusa llega antes que él. Y es más puntual.',
-      'Premio al atleta del sprint de última hora.'
-    ]
-  },
-  {
     id: 'sarah',
     name: 'SARAH',
-    alias: 'La que Siempre Tiene Razón (según ella)',
+    alias: 'Rosh Mac',
     delitos: [
-      'Concluir el debate antes de que empiece',
-      'Citar estadísticas de Wikipedia mid-argumento',
-      'Decir "te lo dije" antes, durante y después del evento'
+      'Es Mac.. 🍎',
+      'La Creatividad De Mac',
+      '1 Class per Day'
     ],
     danger: 4,
     roasts: [
-      'Tiene razón incluso cuando no la tiene. Especialmente entonces.',
-      '"Yo lo sabía" es su frase más usada después de respirar.',
-      'Los debates con ella son un monólogo con interrupciones.'
+      'Rosh Mac en su hábitat natural: la creatividad de Mac.',
+      '1 clase al día. El resto es filosofía.',
+      'Think Different. Estudiar, opcional.'
     ]
   },
   {
     id: 'camila',
     name: 'CAMILA',
-    alias: '💀',
+    alias: '"La Chuchona" 💀',
     delitos: [
-      'Aparecer y desaparecer del grupo sin explicación alguna',
-      'Dejar mensajes en visto durante días y aparecer como si nada',
-      'Saber exactamente lo que pasa pero no decir absolutamente nada'
+      'Eruim la consume 💀',
+      'Modo fantasma activado permanentemente',
+      'Visto. Sin respuesta. Sin remordimiento.'
     ],
-    danger: 3,
+    danger: 4,
     roasts: [
-      'Existe en modo fantasma con cuerpo físico.',
-      'El grupo pregunta dónde está. El grupo nunca recibe respuesta.',
-      'Leer mensajes es un arte. Responderlos, un misterio.'
+      'La Chuchona no responde. La Chuchona observa.',
+      'Eruim la tiene. El grupo la espera.',
+      'Existe en otra dimensión. Manda stickers ocasionalmente.'
     ]
   },
   {
     id: 'isaac_hamui',
     name: 'ISAAC HAMUI',
-    alias: 'El Jefe en su Cabeza',
+    alias: 'Abuelito',
     delitos: [
-      'Proponer planes y asumir automáticamente que él es el líder',
-      'Tomar decisiones por el grupo sin consultar al grupo',
-      'Decir "yo me encargo" y encargar a alguien más'
+      'AKA Federer 🎾',
+      'Pelo Peligroso ⚠️',
+      'Cuál es el corte? 💈'
     ],
     danger: 5,
     roasts: [
-      'CEO de empresa unipersonal en un grupo de amigos.',
-      'Organiza todo. Hace todo. Decide todo. Pregunta nada.',
-      'Su liderazgo es sólido. La democracia, opcional.'
+      'Abuelito Federer: elegante, legendario, el pelo inexplicable.',
+      'El corte sigue siendo un misterio sin resolver.',
+      'Nadie sabe qué está pasando arriba. Ni él.'
     ]
   }
 ];
@@ -1485,7 +1437,7 @@ function renderCards() {
     card.className = 'member-card';
     card.innerHTML = `
       <div class="roast-tooltip">${m.roasts[Math.floor(Math.random() * m.roasts.length)]}</div>
-      <div class="card-alias">${m.alias}</div>
+      <div class="card-name">${m.name}</div>
       <div class="mugshot-frame" onclick="playBoing()">
         <img id="photo-${m.id}" src="" alt="${m.name}" style="display:none">
         <div class="mugshot-placeholder" id="placeholder-${m.id}">
@@ -1496,7 +1448,7 @@ function renderCards() {
           <span>6'</span><span>5'</span><span>4'</span><span>3'</span><span>2'</span><span>1'</span>
         </div>
       </div>
-      <div class="card-name">${m.name}</div>
+      <div class="card-alias">${m.alias}</div>
       <ul class="card-delitos">
         ${m.delitos.map(d => `<li>${d}</li>`).join('')}
       </ul>
@@ -1586,14 +1538,14 @@ function closeLightbox(e) {
 // =====================
 const momentos = [
   { text: 'El día que alguien llegó 2 horas tarde y dijo "ya voy saliendo"', culpable: 'Elias' },
-  { text: 'La vez que mandaron la nota de voz de 8 minutos para decir algo que cabía en 3 palabras', culpable: 'Alesandra' },
-  { text: 'Cuando dijeron "yo pago" y nunca llegaron al billete', culpable: 'Mike' },
+  { text: 'La nota de voz de 8 minutos para decir algo que cabía en 3 palabras', culpable: 'Sarah' },
+  { text: 'Cuando dijeron "yo pago" y nunca llegaron al billete', culpable: 'Gabriel' },
   { text: 'El plan que "era seguro" y salió completamente diferente al 100%', culpable: 'Isaac Hamui' },
-  { text: 'La vez que alguien explicó un chiste y lo mató completamente en el proceso', culpable: 'Gabriel' },
+  { text: 'La vez que alguien explicó un chiste y lo mató completamente en el proceso', culpable: 'Beny' },
   { text: 'Cuando el grupo entero esperó respuesta y apareció el doble check azul sin respuesta por 3 días', culpable: 'Camila' },
-  { text: 'El momento en que alguien dijo "te lo dije" exactamente 0.3 segundos después del evento', culpable: 'Sarah' },
+  { text: 'El momento en que alguien dijo "Rosh Mac" y todo el mundo supo exactamente de quién hablaban', culpable: 'Sarah' },
   { text: 'La confusión histórica entre Benji y Beny que duró un chat entero sin resolverse', culpable: 'Benji & Beny' },
-  { text: 'Cuando Helena supo el chisme antes que las personas involucradas en el chisme', culpable: 'Helena' },
+  { text: 'Cuando Abuelito propuso el plan, lo organizó todo, y luego llegó tarde al plan', culpable: 'Isaac Hamui' },
   { text: 'El día que alguien respondió "ya llegué" pero nadie lo había preguntado', culpable: 'Elias' }
 ];
 
@@ -1620,12 +1572,14 @@ function renderMomentos() {
 const awards = [
   { emoji: '🏆', name: 'Premio al Último en Leer el Grupo', winner: 'Benji', speech: 'Gracias, no había visto este mensaje hasta ahora. Perdón.' },
   { emoji: '🥇', name: 'Oscar al Mejor Actor de que No Sabía Nada', winner: 'Gabriel', speech: 'Yo de eso no sé nada. Juro. Primer vez que escucho.' },
-  { emoji: '🎖️', name: 'Medalla de Oro en Excusas Creativas', winner: 'Mike', speech: 'Es que se me pinchó la llanta del perro en el tráfico del médico.' },
+  { emoji: '🎖️', name: 'Medalla de Oro en Excusas Creativas', winner: 'Elias', speech: 'Es que llegué tarde porque el tráfico del tiempo no me dio.' },
   { emoji: '🏅', name: 'Premio a la Respuesta más Tardía de la Historia', winner: 'Camila', speech: 'Jaja qué chistoso. ¿Eso fue reciente?' },
-  { emoji: '🎪', name: 'Galardón al Drama Innecesario del Año', winner: 'Alesandra', speech: 'No es drama, es que nadie entiende lo que estoy viviendo.' },
+  { emoji: '🎪', name: 'Galardón al Pelo más Peligroso del Año', winner: 'Isaac Hamui', speech: 'El corte tiene vida propia. Yo solo lo cargo.' },
   { emoji: '🚨', name: 'Trofeo a la Idea más Mala que Sonó Bien en el Momento', winner: 'Isaac Hamui', speech: 'Confiaban en mí. Había potencial. Yo creo.' },
   { emoji: '🎯', name: 'Premio al Plan que Nunca Se Concretó', winner: 'Elias', speech: 'Íbamos a ir, ya mero. La próxima sí.' },
-  { emoji: '💀', name: 'Premio Póstumo al Chiste que Nadie Entendió', winner: 'Beny', speech: 'Era gracioso. Ustedes no tienen nivel cultural suficiente.' }
+  { emoji: '💀', name: 'Premio Póstumo al Chiste que Nadie Entendió', winner: 'Beny', speech: 'Era gracioso. Ustedes no tienen nivel cultural suficiente.' },
+  { emoji: '🍎', name: 'Premio a la Creatividad Mac del Año', winner: 'Sarah', speech: '1 clase al día. El resto es Think Different.' },
+  { emoji: '🎾', name: 'Trofeo Federer de Elegancia Inexplicable', winner: 'Isaac Hamui', speech: 'AKA Federer. El pelo habla por sí solo.' }
 ];
 
 function renderAwards() {
