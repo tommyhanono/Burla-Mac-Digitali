@@ -30,6 +30,19 @@ Se abre una ventana, restaura todo y cierra. El site vuelve en ~1 minuto.
 
 ---
 
+## 📱 QR Code para imprimir / proyectar
+
+Abre este archivo en el navegador:
+
+```
+qr.html
+```
+
+Se ve el QR grande con el branding de Mac Digitali. Para imprimir: Cmd+P → escala al 100%.  
+Para proyectar: abre el archivo y pasa el navegador a pantalla completa (F11 / Ctrl+Cmd+F).
+
+---
+
 ## 📸 Agregar fotos nuevas
 
 1. Pon las fotos en la carpeta `photos/` con el nombre correcto:
