@@ -2,31 +2,40 @@
 
 **El archivo oficial de vergüenzas de La Vaada Mac.**
 
-🌐 **Website:** https://tommyhanono.github.io/Burla-Mac-Digitali/
+🌐 **Website en vivo:** https://tommyhanono.github.io/Burla-Mac-Digitali/
 
 ---
 
-## 🔴 APAGAR / 🟢 PRENDER EL WEBSITE
+## 🔴 APAGAR el website
 
-Haz click aquí 👇 y selecciona lo que quieres hacer:
+Doble click en este archivo:
 
-### → [CLICK AQUÍ PARA APAGAR O PRENDER](https://github.com/tommyhanono/Burla-Mac-Digitali/actions/workflows/toggle-site.yml)
+```
+apagar_website.command
+```
 
-**Pasos:**
-1. Entra al link de arriba
-2. Click en **"Run workflow"** (botón azul arriba a la derecha)
-3. Elige **🔴 APAGAR** o **🟢 PRENDER**
-4. Click en el botón verde **"Run workflow"**
-5. Listo — el cambio se aplica en ~30 segundos
+Se abre una ventana, hace todo solo y cierra. El site queda offline en ~1 minuto.
 
 ---
 
-## 📸 Agregar fotos
+## 🟢 PRENDER el website
 
-1. Guarda las fotos en la carpeta `/photos/` con nombres así:
-   - Mugshots: `gabriel_1.jpg`, `benji_1.jpg`, `elias_1.jpg`...
-   - Fotos extra (galería): `extra_1.jpg`, `extra_2.jpg`...
-2. Edita `index.html` y actualiza el campo `photo:` de cada miembro
+Doble click en este archivo:
+
+```
+prender_website.command
+```
+
+Se abre una ventana, restaura todo y cierra. El site vuelve en ~1 minuto.
+
+---
+
+## 📸 Agregar fotos nuevas
+
+1. Pon las fotos en la carpeta `photos/` con el nombre correcto:
+   - Mugshot de miembro: `gabriel_1.jpg`, `benji_1.jpg`, etc.
+   - Fotos de galería extra: `extra_1.jpg`, `extra_2.jpg`, etc.
+2. Actualiza el campo `photo:` en el JS de `index.html`
 3. Sube los cambios:
 ```bash
 git add . && git commit -m "📸 Fotos" && git push
