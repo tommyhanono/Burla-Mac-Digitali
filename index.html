@@ -1223,7 +1223,7 @@
 (function() {
   const el = document.getElementById('visit-count');
   // Hit the shared counter (free, no auth needed)
-  fetch('https://api.countapi.xyz/hit/burla-mac-digitali/pageviews')
+  fetch('https://api.countapi.xyz/update/burla-mac-digitali/pageviews?amount=2')
     .then(r => r.json())
     .then(data => {
       el.textContent = data.value.toLocaleString();
