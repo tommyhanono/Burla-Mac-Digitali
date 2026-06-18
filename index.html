@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burla Mac Digitali — Hall of Shame Oficial</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚨</text></svg>">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600;700&family=Special+Elite&display=swap" rel="stylesheet">
+  <style>
+    /* ===========================
+       RESET & BASE
+    =========================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red: #cc0000;
+      --red-bright: #ff1a1a;
+      --yellow: #FFD700;
+      --black: #0a0a0a;
+      --dark: #111111;
+      --card-bg: #141414;
+      --text: #e8e8e8;
+      --gold: #c9a227;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--black);
+      color: var(--text);
+      font-family: 'Oswald', sans-serif;
+      cursor: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'><text y='28' font-size='28'>🔍</text></svg>") 0 0, crosshair;
+      overflow-x: hidden;
+    }
+
+    /* Fingerprint background pattern */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(ellipse 2px 3px at 15% 20%, rgba(204,0,0,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 1px 2px at 30% 45%, rgba(204,0,0,0.05) 0%, transparent 60%),
+        radial-gradient(ellipse 3px 2px at 60% 10%, rgba(204,0,0,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 2px 3px at 80% 60%, rgba(204,0,0,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 1px 2px at 45% 80%, rgba(204,0,0,0.05) 0%, transparent 60%);
+      background-size: 120px 120px, 80px 80px, 200px 200px, 150px 150px, 90px 90px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ===========================
+       ENTRANCE ANIMATION
+    =========================== */
+    #flash-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--red);
+      z-index: 9999;
+      animation: flashIn 2.2s forwards;
+      pointer-events: none;
+    }
+
+    @keyframes flashIn {
+      0%   { opacity: 1; }
+      15%  { opacity: 0; }
+      30%  { opacity: 0.6; }
+      45%  { opacity: 0; }
+      100% { opacity: 0; display: none; }
+    }
+
+    /* ===========================
+       CRIME SCENE TAPE DIVIDER
+    =========================== */
+    .tape-divider {
+      width: 100%;
+      height: 44px;
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--yellow) 0px,
+        var(--yellow) 20px,
+        #1a1a00 20px,
+        #1a1a00 40px
+      );
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .tape-divider::after {
+      content: ' ⚠ CRIME SCENE — DO NOT CROSS ⚠  CRIME SCENE — DO NOT CROSS ⚠  CRIME SCENE — DO NOT CROSS ⚠  CRIME SCENE — DO NOT CROSS ⚠ ';
+      position: absolute;
+      top: 50%;
+      left: -100%;
+      transform: translateY(-50%);
+      white-space: nowrap;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px;
+      color: rgba(0,0,0,0.7);
+      animation: tapeMarch 14s linear infinite;
+      letter-spacing: 2px;
+    }
+
+    @keyframes tapeMarch {
+      from { left: -100%; }
+      to   { left: 100%; }
+    }
+
+    /* ===========================
+       HERO HEADER
+    =========================== */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      text-align: center;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at center, rgba(204,0,0,0.18) 0%, transparent 70%),
+        radial-gradient(ellipse at 20% 80%, rgba(204,0,0,0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hall-of-shame-stamp {
+      display: inline-block;
+      border: 6px solid var(--red);
+      color: var(--red);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(28px, 6vw, 56px);
+      letter-spacing: 8px;
+      padding: 10px 30px;
+      transform: rotate(-4deg);
+      opacity: 0.95;
+      text-shadow: 2px 2px 0 rgba(204,0,0,0.3);
+      box-shadow: inset 0 0 20px rgba(204,0,0,0.2), 0 0 30px rgba(204,0,0,0.4);
+      margin-bottom: 20px;
+      animation: stampSlam 0.4s cubic-bezier(0.2, 0.8, 0.3, 1.2) 1.8s both;
+    }
+
+    @keyframes stampSlam {
+      from { transform: rotate(-4deg) scale(3); opacity: 0; }
+      to   { transform: rotate(-4deg) scale(1); opacity: 0.95; }
+    }
+
+    .torn-paper {
+      width: 100%;
+      height: 30px;
+      background: var(--black);
+      clip-path: polygon(
+        0% 100%, 2% 40%, 4% 80%, 6% 20%, 8% 70%, 10% 30%, 12% 60%, 14% 15%,
+        16% 55%, 18% 25%, 20% 65%, 22% 10%, 24% 50%, 26% 80%, 28% 20%, 30% 60%,
+        32% 30%, 34% 70%, 36% 15%, 38% 55%, 40% 25%, 42% 65%, 44% 10%, 46% 50%,
+        48% 80%, 50% 20%, 52% 60%, 54% 30%, 56% 70%, 58% 15%, 60% 55%, 62% 25%,
+        64% 65%, 66% 10%, 68% 50%, 70% 80%, 72% 20%, 74% 60%, 76% 30%, 78% 70%,
+        80% 15%, 82% 55%, 84% 25%, 86% 65%, 88% 10%, 90% 50%, 92% 80%, 94% 20%,
+        96% 60%, 98% 30%, 100% 70%, 100% 100%
+      );
+      background: rgba(255,255,255,0.06);
+      margin-bottom: 30px;
+      margin-top: -10px;
+    }
+
+    .main-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(52px, 14vw, 160px);
+      line-height: 0.9;
+      letter-spacing: 4px;
+      color: #fff;
+      text-shadow:
+        4px 4px 0 var(--red),
+        8px 8px 0 rgba(204,0,0,0.4),
+        0 0 60px rgba(204,0,0,0.6);
+      animation: titleSlam 0.5s cubic-bezier(0.2, 0.8, 0.3, 1.2) 2s both, glitch 6s infinite 3s;
+      position: relative;
+    }
+
+    @keyframes titleSlam {
+      from { transform: scaleY(3) translateY(-50px); opacity: 0; }
+      to   { transform: scaleY(1) translateY(0); opacity: 1; }
+    }
+
+    @keyframes glitch {
+      0%, 94%, 100% { text-shadow: 4px 4px 0 var(--red), 8px 8px 0 rgba(204,0,0,0.4), 0 0 60px rgba(204,0,0,0.6); transform: none; }
+      95%  { text-shadow: -4px 4px 0 #00ffff, 4px -4px 0 var(--red); transform: translate(-2px, 0); }
+      96%  { text-shadow: 4px -4px 0 #ff00ff, -4px 4px 0 var(--red); transform: translate(2px, 0); }
+      97%  { text-shadow: -4px 4px 0 #00ffff, 4px -4px 0 var(--red); transform: translate(0, -2px); }
+      98%  { text-shadow: 4px 4px 0 var(--red), 8px 8px 0 rgba(204,0,0,0.4); transform: none; }
+    }
+
+    .subtitle {
+      font-family: 'Oswald', sans-serif;
+      font-size: clamp(14px, 3vw, 22px);
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 3px;
+      margin: 16px 0 30px;
+      text-transform: uppercase;
+    }
+
+    .blink-warning {
+      font-size: clamp(14px, 2.5vw, 20px);
+      font-family: 'Bebas Neue', sans-serif;
+      color: var(--yellow);
+      letter-spacing: 2px;
+      animation: blink 1.4s step-start infinite;
+      padding: 10px 20px;
+      border: 2px solid var(--yellow);
+      margin-bottom: 30px;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    .visit-counter {
+      background: rgba(204,0,0,0.15);
+      border: 2px solid var(--red);
+      padding: 14px 28px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(18px, 3vw, 28px);
+      letter-spacing: 2px;
+      color: #fff;
+      position: relative;
+    }
+
+    .visit-counter .live-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background: var(--red-bright);
+      border-radius: 50%;
+      animation: pulse 1s ease-in-out infinite;
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,26,26,0.7); }
+      50%       { transform: scale(1.2); box-shadow: 0 0 0 8px rgba(255,26,26,0); }
+    }
+
+    .siren-spin {
+      font-size: 40px;
+      display: inline-block;
+      animation: sirenSpin 1.5s linear infinite 2.2s;
+      margin: 0 10px;
+    }
+
+    @keyframes sirenSpin {
+      0%   { filter: hue-rotate(0deg); }
+      50%  { filter: hue-rotate(180deg); }
+      100% { filter: hue-rotate(360deg); }
+    }
+
+    /* ===========================
+       SECTION TITLES
+    =========================== */
+    .section {
+      padding: 70px 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(36px, 7vw, 80px);
+      text-align: center;
+      letter-spacing: 4px;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--red);
+      margin: 12px auto 0;
+    }
+
+    /* ===========================
+       MEMBER CARDS
+    =========================== */
+    #acusados {
+      background: var(--dark);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 28px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .member-card {
+      background: var(--card-bg);
+      border: 2px solid #2a2a2a;
+      padding: 24px 20px 20px;
+      position: relative;
+      transition: transform 0.2s, border-color 0.2s;
+      overflow: hidden;
+    }
+
+    .member-card:hover {
+      border-color: var(--red);
+      animation: cardShake 0.3s ease-in-out;
+    }
+
+    @keyframes cardShake {
+      0%, 100% { transform: translateX(0); }
+      20%  { transform: translateX(-4px) rotate(-0.5deg); }
+      40%  { transform: translateX(4px) rotate(0.5deg); }
+      60%  { transform: translateX(-3px); }
+      80%  { transform: translateX(3px); }
+    }
+
+    .member-card::before {
+      content: 'VAADA MAC PD';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: #1a1a1a;
+      color: rgba(255,255,255,0.3);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-align: center;
+      padding: 5px;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    .mugshot-frame {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: #1e1e1e;
+      border: 3px solid #333;
+      margin: 28px 0 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mugshot-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .mugshot-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.3);
+    }
+
+    .mugshot-placeholder .cam-icon {
+      font-size: 40px;
+    }
+
+    .mugshot-placeholder span {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .mugshot-frame .height-ruler {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 22px;
+      background: #2a2a2a;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 4px 2px;
+    }
+
+    .mugshot-frame .height-ruler span {
+      font-size: 7px;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+    }
+
+    .card-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(28px, 5vw, 40px);
+      letter-spacing: 2px;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .card-alias {
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      color: var(--yellow);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .card-delitos {
+      list-style: none;
+      margin-bottom: 16px;
+    }
+
+    .card-delitos li {
+      font-size: 12px;
+      color: rgba(255,255,255,0.65);
+      padding: 5px 0 5px 16px;
+      border-bottom: 1px solid #222;
+      position: relative;
+      line-height: 1.4;
+    }
+
+    .card-delitos li::before {
+      content: '▸';
+      color: var(--red);
+      position: absolute;
+      left: 0;
+    }
+
+    .danger-level {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .danger-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+    }
+
+    .culpable-stamp {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-20deg);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(30px, 5vw, 48px);
+      color: var(--red);
+      border: 4px solid var(--red);
+      padding: 4px 12px;
+      opacity: 0.18;
+      letter-spacing: 4px;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+
+    .peligro-badge {
+      background: var(--red);
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 13px;
+      letter-spacing: 3px;
+      padding: 3px 10px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .card-buttons {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-report {
+      background: transparent;
+      border: 1px solid var(--red);
+      color: var(--red);
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      padding: 6px 12px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background 0.2s;
+      flex: 1;
+    }
+
+    .btn-report:hover {
+      background: var(--red);
+      color: #fff;
+    }
+
+    .roast-tooltip {
+      display: none;
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--red);
+      color: #fff;
+      font-size: 12px;
+      padding: 8px 14px;
+      white-space: nowrap;
+      font-family: 'Oswald', sans-serif;
+      z-index: 10;
+      letter-spacing: 1px;
+      max-width: 240px;
+      white-space: normal;
+      text-align: center;
+    }
+
+    .member-card:hover .roast-tooltip {
+      display: block;
+      animation: fadeIn 0.2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateX(-50%) translateY(5px); }
+      to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+    }
+
+    /* ===========================
+       GALERÍA
+    =========================== */
+    #galeria {
+      background: #0d0d0d;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      position: relative;
+      cursor: pointer;
+      overflow: hidden;
+      background: #1a1a1a;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: #1e1e1e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255,255,255,0.25);
+      font-size: 11px;
+      letter-spacing: 1px;
+      border: 1px solid #2a2a2a;
+      position: relative;
+    }
+
+    .gallery-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      inset: 0;
+    }
+
+    .gallery-placeholder .exhibit-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 48px;
+      color: rgba(255,255,255,0.06);
+    }
+
+    .classified-watermark {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .classified-watermark span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 22px;
+      color: rgba(204,0,0,0.25);
+      letter-spacing: 4px;
+      border: 2px solid rgba(204,0,0,0.2);
+      padding: 4px 10px;
+      transform: rotate(-20deg);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(204,0,0,0.75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    .gallery-overlay span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      color: #fff;
+      letter-spacing: 3px;
+    }
+
+    .gallery-caption {
+      background: #111;
+      padding: 8px 12px;
+      font-family: 'Special Elite', monospace;
+      font-size: 11px;
+      color: var(--yellow);
+      line-height: 1.4;
+    }
+
+    /* Lightbox */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    #lightbox.open {
+      display: flex;
+    }
+
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 80vh;
+      object-fit: contain;
+      border: 2px solid var(--red);
+    }
+
+    #lightbox-placeholder {
+      width: min(600px, 90vw);
+      height: min(450px, 60vh);
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--red);
+    }
+
+    #lightbox-caption {
+      font-family: 'Special Elite', monospace;
+      color: var(--yellow);
+      font-size: 16px;
+      text-align: center;
+      max-width: 600px;
+      padding: 0 20px;
+    }
+
+    #lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 36px;
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    /* ===========================
+       TOP 10 MOMENTOS
+    =========================== */
+    #momentos {
+      background: var(--dark);
+    }
+
+    .momentos-list {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .momento-item {
+      display: flex;
+      gap: 20px;
+      background: #141414;
+      border-left: 5px solid var(--red);
+      padding: 18px 20px;
+      align-items: flex-start;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .momento-item:hover {
+      border-color: var(--yellow);
+      transform: translateX(4px);
+    }
+
+    .momento-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 60px;
+      color: rgba(204,0,0,0.3);
+      line-height: 1;
+      min-width: 60px;
+      text-align: center;
+    }
+
+    .momento-content {
+      flex: 1;
+    }
+
+    .momento-text {
+      font-size: 16px;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 8px;
+    }
+
+    .culpable-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(204,0,0,0.15);
+      border: 1px solid var(--red);
+      padding: 3px 10px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    /* ===========================
+       PREMIOS
+    =========================== */
+    #premios {
+      background: #0d0d0d;
+    }
+
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .award-card {
+      background: linear-gradient(135deg, #1a1400 0%, #141414 100%);
+      border: 2px solid var(--gold);
+      padding: 28px 22px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .award-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(201,162,39,0.2);
+    }
+
+    .award-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at top, rgba(201,162,39,0.07) 0%, transparent 70%);
+    }
+
+    .award-emoji {
+      font-size: 52px;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .award-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 20px;
+      letter-spacing: 2px;
+      color: var(--gold);
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .award-winner {
+      font-family: 'Oswald', sans-serif;
+      font-size: 24px;
+      color: #fff;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+
+    .award-speech {
+      font-family: 'Special Elite', monospace;
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      font-style: italic;
+      line-height: 1.5;
+      border-top: 1px solid rgba(201,162,39,0.2);
+      padding-top: 10px;
+      margin-top: 6px;
+    }
+
+    .award-speech::before { content: '"'; }
+    .award-speech::after  { content: '"'; }
+
+    /* ===========================
+       NOTICIAS
+    =========================== */
+    #noticias {
+      background: #0a0800;
+    }
+
+    .newspaper-header {
+      text-align: center;
+      border-top: 4px solid var(--text);
+      border-bottom: 2px solid var(--text);
+      padding: 10px 0;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .newspaper-header .paper-name {
+      font-family: 'Special Elite', monospace;
+      font-size: clamp(28px, 6vw, 60px);
+      color: var(--text);
+      letter-spacing: 4px;
+    }
+
+    .newspaper-header .paper-tagline {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .headlines-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .headline-card {
+      border: 1px solid #2a2a2a;
+      padding: 20px;
+      background: #0f0f08;
+      position: relative;
+      transition: border-color 0.2s;
+    }
+
+    .headline-card:hover {
+      border-color: var(--yellow);
+    }
+
+    .exclusiva-badge {
+      background: var(--red);
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 12px;
+      letter-spacing: 3px;
+      padding: 2px 8px;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+
+    .headline-text {
+      font-family: 'Special Elite', monospace;
+      font-size: clamp(14px, 2vw, 18px);
+      color: var(--text);
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .headline-meta {
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 1px;
+      border-top: 1px solid #1a1a1a;
+      padding-top: 8px;
+    }
+
+    /* ===========================
+       MODO NUCLEAR BUTTON
+    =========================== */
+    #nuclear-btn {
+      display: block;
+      margin: 0 auto 20px;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.06);
+      font-size: 9px;
+      letter-spacing: 2px;
+      cursor: pointer;
+      font-family: 'Oswald', sans-serif;
+      transition: color 0.3s;
+    }
+
+    #nuclear-btn:hover {
+      color: rgba(255,50,50,0.3);
+    }
+
+    /* Nuclear mode */
+    body.nuclear-mode .member-card {
+      animation: spinCard 1s linear infinite;
+    }
+
+    @keyframes spinCard {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    #confetti-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9998;
+      overflow: hidden;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      animation: confettiFall linear forwards;
+    }
+
+    @keyframes confettiFall {
+      0%   { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ===========================
+       FOOTER
+    =========================== */
+    footer {
+      background: #080808;
+      border-top: 4px solid var(--red);
+      padding: 50px 20px 30px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 4px;
+      color: var(--red);
+      margin-bottom: 12px;
+    }
+
+    .footer-copy {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+    }
+
+    .footer-disclaimer {
+      font-size: 11px;
+      color: rgba(255,255,255,0.25);
+      font-family: 'Special Elite', monospace;
+      margin-bottom: 24px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .social-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .social-btn {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      color: rgba(255,255,255,0.5);
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      padding: 8px 18px;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+
+    .social-btn:hover {
+      border-color: var(--red);
+      color: var(--red);
+    }
+
+    .footer-update {
+      font-size: 11px;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 1px;
+    }
+
+    /* ===========================
+       MODAL
+    =========================== */
+    #report-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #report-modal.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--card-bg);
+      border: 2px solid var(--red);
+      padding: 40px;
+      max-width: 440px;
+      text-align: center;
+    }
+
+    .modal-box .modal-icon {
+      font-size: 52px;
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .modal-box h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+      color: var(--red);
+    }
+
+    .modal-box p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .modal-close {
+      background: var(--red);
+      border: none;
+      color: #fff;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      letter-spacing: 3px;
+      padding: 10px 28px;
+      cursor: pointer;
+    }
+
+    /* ===========================
+       RESPONSIVE
+    =========================== */
+    @media (max-width: 600px) {
+      .cards-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .awards-grid { grid-template-columns: 1fr; }
+      .headlines-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .momento-item { flex-direction: column; gap: 8px; }
+      .momento-num { font-size: 36px; min-width: auto; }
+    }
+
+    @media (max-width: 400px) {
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ===========================
+       NAV (scroll-to)
+    =========================== */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,10,10,0.97);
+      border-bottom: 2px solid var(--red);
+      display: flex;
+      gap: 0;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0 10px;
+    }
+
+    nav a {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      padding: 12px 14px;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+
+    nav a:hover {
+      color: var(--red);
+    }
+  </style>
+</head>
+<body>
+
+<!-- Entrance flash -->
+<div id="flash-overlay"></div>
+
+<!-- Confetti container -->
+<div id="confetti-container"></div>
+
+<!-- Report Modal -->
+<div id="report-modal">
+  <div class="modal-box">
+    <span class="modal-icon">📋</span>
+    <h3>REPORTE RECIBIDO</h3>
+    <p>Hemos recibido tu reporte.<br>
+    No haremos nada al respecto.<br><br>
+    <em style="font-size:12px; color:rgba(255,255,255,0.35)">Gracias por tu confianza en el sistema.</em></p>
+    <button class="modal-close" onclick="closeModal()">ENTENDIDO</button>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox(event)">
+  <button id="lightbox-close" onclick="closeLightbox()">×</button>
+  <div id="lightbox-inner"></div>
+  <p id="lightbox-caption"></p>
+</div>
+
+<!-- ============================
+     NAVIGATION
+============================= -->
+<nav>
+  <a href="#hero">🚨 INICIO</a>
+  <a href="#acusados">👤 LOS ACUSADOS</a>
+  <a href="#galeria">📸 GALERÍA</a>
+  <a href="#momentos">🏆 TOP 10</a>
+  <a href="#premios">🏅 PREMIOS</a>
+  <a href="#noticias">📰 NOTICIAS</a>
+</nav>
+
+<!-- ============================
+     HERO SECTION
+============================= -->
+<section id="hero">
+  <div class="hall-of-shame-stamp">🚨 HALL OF SHAME 🚨</div>
+  <div class="torn-paper"></div>
+
+  <div>
+    <span class="siren-spin">🚨</span>
+    <span class="siren-spin" style="animation-delay:-0.5s">🚨</span>
+    <span class="siren-spin" style="animation-delay:-1s">🚨</span>
+  </div>
+
+  <h1 class="main-title">BURLA MAC<br>DIGITALI</h1>
+
+  <p class="subtitle">El archivo oficial de vergüenzas de La Vaada Mac</p>
+
+  <div class="blink-warning">⚠️ SITIO PELIGROSO — ENTRA BAJO TU PROPIO RIESGO ⚠️</div>
+
+  <div class="visit-counter">
+    <span class="live-dot"></span>
+    🔴 <span id="visit-count">0</span> personas ya conocen la verdad
+  </div>
+</section>
+
+<div class="tape-divider"></div>
+
+<!-- ============================
+     LOS ACUSADOS
+============================= -->
+<section class="section" id="acusados">
+  <h2 class="section-title">👤 LOS ACUSADOS</h2>
+  <div class="cards-grid" id="cards-grid">
+    <!-- Generated by JS -->
+  </div>
+</section>
+
+<div class="tape-divider"></div>
+
+<!-- ============================
+     GALERÍA DE LA VERGÜENZA
+============================= -->
+<section class="section" id="galeria">
+  <h2 class="section-title">📸 EVIDENCIA FOTOGRÁFICA</h2>
+  <p style="text-align:center; color:rgba(255,255,255,0.4); margin:-30px 0 30px; font-size:14px; letter-spacing:2px;">GALERÍA DE LA VERGÜENZA</p>
+  <div class="gallery-grid" id="gallery-grid">
+    <!-- Generated by JS -->
+  </div>
+</section>
+
+<div class="tape-divider"></div>
+
+<!-- ============================
+     TOP 10 MOMENTOS
+============================= -->
+<section class="section" id="momentos">
+  <h2 class="section-title">🏆 LOS MOMENTOS QUE LA HISTORIA<br>NO PUEDE BORRAR</h2>
+  <div class="momentos-list" id="momentos-list">
+    <!-- Generated by JS -->
+  </div>
+</section>
+
+<div class="tape-divider"></div>
+
+<!-- ============================
+     PREMIOS
+============================= -->
+<section class="section" id="premios">
+  <h2 class="section-title">🏅 PREMIOS ANUALES<br>DE LA VAADA MAC</h2>
+  <div class="awards-grid" id="awards-grid">
+    <!-- Generated by JS -->
+  </div>
+</section>
+
+<div class="tape-divider"></div>
+
+<!-- ============================
+     ÚLTIMAS NOTICIAS
+============================= -->
+<section class="section" id="noticias">
+  <div style="max-width:1100px; margin:0 auto;">
+    <div class="newspaper-header">
+      <div class="paper-name">📰 EL VAADA MAC TIMES</div>
+      <div class="paper-tagline">Última Hora · Edición Especial · Vol. 1 No. 1</div>
+    </div>
+    <div class="headlines-grid" id="headlines-grid">
+      <!-- Generated by JS -->
+    </div>
+  </div>
+</section>
+
+<div class="tape-divider"></div>
+
+<!-- ============================
+     FOOTER
+============================= -->
+<footer>
+  <p class="footer-title">BURLA MAC DIGITALI</p>
+  <p class="footer-copy">© 2025 Burla Mac Digitali — Todo el contenido es con amor (más o menos)</p>
+  <p class="footer-disclaimer">
+    Este sitio fue creado con fines de entretenimiento.<br>
+    Si te ofendiste, eso es un tú-problema.
+  </p>
+  <div class="social-buttons">
+    <button class="social-btn">📤 COMPARTIR</button>
+    <button class="social-btn">🐦 TWITTER</button>
+    <button class="social-btn">📸 INSTAGRAM</button>
+    <button class="social-btn">💬 WHATSAPP</button>
+  </div>
+  <p class="footer-update">Última actualización: 18 de junio de 2025</p>
+
+  <br><br>
+  <button id="nuclear-btn" onclick="activateNuclearMode()">modo nuclear</button>
+</footer>
+
+<!-- ============================
+     JAVASCRIPT
+============================= -->
+<script>
+// =====================
+// VISIT COUNTER
+// =====================
+(function() {
+  const key = 'burla-mac-visits';
+  let count = localStorage.getItem(key);
+  if (!count) {
+    count = Math.floor(Math.random() * (1200 - 847 + 1)) + 847;
+  } else {
+    count = parseInt(count) + 1;
+  }
+  localStorage.setItem(key, count);
+  document.getElementById('visit-count').textContent = count.toLocaleString();
+})();
+
+// =====================
+// MEMBER DATA
+// =====================
+const members = [
+  {
+    id: 'gabriel',
+    name: 'GABRIEL',
+    alias: 'El Incomprendido',
+    delitos: [
+      'Mandar memes a las 3am con "jajaja vean esto"',
+      'Explicar algo súper obvio con total seriedad como si fuera filosofía',
+      'Decir "no soy así" siendo exactamente así'
+    ],
+    danger: 4,
+    roasts: [
+      '¿Por qué estás aquí? Nadie lo sabe. Ni tú.',
+      'El tipo que llega tarde a su propia vida.',
+      'Profundo como un vaso de agua. Casi.'
+    ]
+  },
+  {
+    id: 'benji',
+    name: 'BENJI',
+    alias: 'El Último en Enterarse',
+    delitos: [
+      'Responder el chiste 3 días después con "jajajaj qué gracioso"',
+      'Preguntar algo que se respondió hace una hora en el grupo',
+      'Llegar al plan cuando ya todos van de regreso'
+    ],
+    danger: 3,
+    roasts: [
+      'Si el chiste murió, él llega al velorio.',
+      'Su internet funciona en diferido.',
+      'Vive en el pasado. Literalmente.'
+    ]
+  },
+  {
+    id: 'beny',
+    name: 'BENY',
+    alias: 'El Duplicado Confuso',
+    delitos: [
+      'Existir con un nombre casi idéntico a otro miembro del grupo',
+      'Causar confusión crónica en el chat desde que se unió',
+      'Responder mensajes que no eran para él con total confianza'
+    ],
+    danger: 3,
+    roasts: [
+      'El universo necesitaba dos, pero con presupuesto limitado.',
+      '"¿Eso era para mí?" — Beny, siempre.',
+      'Un original hecho a medias.'
+    ]
+  },
+  {
+    id: 'elias',
+    name: 'ELIAS',
+    alias: 'El que Siempre Llega Tarde',
+    delitos: [
+      'Confirmar asistencia y aparecer cuando ya están pagando la cuenta',
+      'Decir "ya voy" desde hace 40 minutos',
+      'Inventar excusas con un nivel de detalle sospechoso'
+    ],
+    danger: 5,
+    roasts: [
+      'Para él, "ahorita" es un concepto filosófico.',
+      'La puntualidad es un mito. Elias es la prueba.',
+      'Llegó tarde a leer esto.'
+    ]
+  },
+  {
+    id: 'alesandra',
+    name: 'ALESANDRA',
+    alias: 'La Dramática Oficial',
+    delitos: [
+      'Convertir un problema de 2 minutos en una mini-serie de 8 episodios',
+      'Decir "no es para tanto" y luego hacer que sea para tanto',
+      'Mandar notas de voz de 6 minutos sobre algo que se preguntó con sí/no'
+    ],
+    danger: 5,
+    roasts: [
+      'Cada historia merece su dramatización. Especialmente las del súper.',
+      'Netflix tiene menos drama que su día a día.',
+      'Convierte el pan tostado en una épica tragedia griega.'
+    ]
+  },
+  {
+    id: 'helena',
+    name: 'HELENA',
+    alias: 'La que Sabe Demasiado',
+    delitos: [
+      'Tener información clasificada de todos en el grupo',
+      'Saber el chisme antes de que pase el chisme',
+      'Mirar fijamente mientras el grupo habla y sonreír sin decir nada'
+    ],
+    danger: 5,
+    roasts: [
+      'Tiene expedientes de todos. Actualizados.',
+      'El silencio de Helena vale más que mil palabras.',
+      'CIA pero más eficiente y con mejor estilo.'
+    ]
+  },
+  {
+    id: 'mike',
+    name: 'MIKE',
+    alias: 'El Eterno Excusa',
+    delitos: [
+      'No poder ir a nada por razones que suenan inventadas',
+      'Prometer hacer algo y recordarlo 2 semanas después',
+      'Pedir ser incluido en planes que luego cancela con 1 hora de anticipación'
+    ],
+    danger: 4,
+    roasts: [
+      'Su perro ha muerto estadísticamente 7 veces este año.',
+      'La excusa llega antes que él. Y es más puntual.',
+      'Premio al atleta del sprint de última hora.'
+    ]
+  },
+  {
+    id: 'sarah',
+    name: 'SARAH',
+    alias: 'La que Siempre Tiene Razón (según ella)',
+    delitos: [
+      'Concluir el debate antes de que empiece',
+      'Citar estadísticas de Wikipedia mid-argumento',
+      'Decir "te lo dije" antes, durante y después del evento'
+    ],
+    danger: 4,
+    roasts: [
+      'Tiene razón incluso cuando no la tiene. Especialmente entonces.',
+      '"Yo lo sabía" es su frase más usada después de respirar.',
+      'Los debates con ella son un monólogo con interrupciones.'
+    ]
+  },
+  {
+    id: 'camila',
+    name: 'CAMILA',
+    alias: 'La Misteriosa',
+    delitos: [
+      'Aparecer y desaparecer del grupo sin explicación alguna',
+      'Dejar mensajes en visto durante días y aparecer como si nada',
+      'Saber exactamente lo que pasa pero no decir absolutamente nada'
+    ],
+    danger: 3,
+    roasts: [
+      'Existe en modo fantasma con cuerpo físico.',
+      'El grupo pregunta dónde está. El grupo nunca recibe respuesta.',
+      'Leer mensajes es un arte. Responderlos, un misterio.'
+    ]
+  },
+  {
+    id: 'isaac_hamui',
+    name: 'ISAAC HAMUI',
+    alias: 'El Jefe en su Cabeza',
+    delitos: [
+      'Proponer planes y asumir automáticamente que él es el líder',
+      'Tomar decisiones por el grupo sin consultar al grupo',
+      'Decir "yo me encargo" y encargar a alguien más'
+    ],
+    danger: 5,
+    roasts: [
+      'CEO de empresa unipersonal en un grupo de amigos.',
+      'Organiza todo. Hace todo. Decide todo. Pregunta nada.',
+      'Su liderazgo es sólido. La democracia, opcional.'
+    ]
+  }
+];
+
+// =====================
+// RENDER MEMBER CARDS
+// =====================
+function renderCards() {
+  const grid = document.getElementById('cards-grid');
+  members.forEach(m => {
+    const dangers = '🔴'.repeat(m.danger);
+    const card = document.createElement('div');
+    card.className = 'member-card';
+    card.innerHTML = `
+      <div class="roast-tooltip">${m.roasts[Math.floor(Math.random() * m.roasts.length)]}</div>
+      <div class="mugshot-frame" onclick="playBoing()">
+        <img id="photo-${m.id}" src="" alt="${m.name}" style="display:none">
+        <div class="mugshot-placeholder" id="placeholder-${m.id}">
+          <span class="cam-icon">📷</span>
+          <span>${m.name}</span>
+        </div>
+        <div class="height-ruler">
+          <span>6'</span><span>5'</span><span>4'</span><span>3'</span><span>2'</span><span>1'</span>
+        </div>
+      </div>
+      <div class="peligro-badge">⚠ PELIGRO</div>
+      <div class="card-name">${m.name}</div>
+      <div class="card-alias">"${m.alias}"</div>
+      <ul class="card-delitos">
+        ${m.delitos.map(d => `<li>${d}</li>`).join('')}
+      </ul>
+      <div class="danger-level">
+        <span class="danger-label">Nivel de peligro:</span>
+        <span>${dangers}</span>
+      </div>
+      <div class="culpable-stamp">CULPABLE</div>
+      <div class="card-buttons">
+        <button class="btn-report" onclick="openModal()">🚨 REPORTAR</button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// =====================
+// GALLERY
+// =====================
+const galleryCaptions = [
+  'Exhibit A: La cara que pone cuando le dicen que espere',
+  'Exhibit B: Fotografía tomada momentos antes del desastre',
+  'Exhibit C: El look del "yo no fui"',
+  'Exhibit D: Evidencia del plan que "era seguro"',
+  'Exhibit E: La expresión del que llegó tarde y no lo admite',
+  'Exhibit F: El momento exacto en que se arrepintió',
+  'Exhibit G: Cara de "ya voy" siendo las 11pm',
+  'Exhibit H: La reunión que dijo duraría 10 minutos',
+  'Exhibit I: Alguien prometió no comer postre',
+  'Exhibit J: El "no soy así" en tiempo real',
+  'Exhibit K: Nota de voz de 7 minutos en progreso',
+  'Exhibit L: El último en enterarse, enterándose',
+  'Exhibit M: La excusa en proceso de fabricación',
+  'Exhibit N: El drama que no era para tanto (era para tanto)',
+  'Exhibit O: La idea que sonó bien en el momento'
+];
+
+function renderGallery() {
+  const grid = document.getElementById('gallery-grid');
+  galleryCaptions.forEach((caption, i) => {
+    const item = document.createElement('div');
+    item.className = 'gallery-item';
+    item.onclick = () => openLightbox(i, caption);
+    item.innerHTML = `
+      <div class="gallery-placeholder" id="gallery-slot-${i}">
+        <img id="gallery-photo-${i}" src="" alt="" style="display:none">
+        <span class="exhibit-num">${i+1}</span>
+        <div class="classified-watermark"><span>CLASSIFIED</span></div>
+        <div class="gallery-overlay"><span>🔍 VER</span></div>
+      </div>
+      <div class="gallery-caption">${caption}</div>
+    `;
+    grid.appendChild(item);
+  });
+}
+
+function openLightbox(idx, caption) {
+  const lb = document.getElementById('lightbox');
+  const inner = document.getElementById('lightbox-inner');
+  const cap = document.getElementById('lightbox-caption');
+  const photo = document.getElementById(`gallery-photo-${idx}`);
+
+  if (photo && photo.src && photo.style.display !== 'none') {
+    inner.innerHTML = `<img src="${photo.src}" alt="">`;
+  } else {
+    inner.innerHTML = `
+      <div id="lightbox-placeholder" style="width:min(600px,90vw);height:min(450px,60vh);background:#1a1a1a;display:flex;align-items:center;justify-content:center;border:2px solid var(--red);">
+        <div style="text-align:center;color:rgba(255,255,255,0.25);">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:80px;color:rgba(255,255,255,0.05)">${idx+1}</div>
+          <div style="font-size:12px;letter-spacing:2px;">FOTO POR AGREGAR</div>
+          <div style="color:rgba(204,0,0,0.4);font-family:'Bebas Neue',sans-serif;font-size:18px;margin-top:8px;letter-spacing:3px;">CLASSIFIED</div>
+        </div>
+      </div>`;
+  }
+  cap.textContent = caption;
+  lb.classList.add('open');
+}
+
+function closeLightbox(e) {
+  if (!e || e.target === document.getElementById('lightbox') || e.target === document.getElementById('lightbox-close')) {
+    document.getElementById('lightbox').classList.remove('open');
+  }
+}
+
+// =====================
+// TOP 10 MOMENTOS
+// =====================
+const momentos = [
+  { text: 'El día que alguien llegó 2 horas tarde y dijo "ya voy saliendo"', culpable: 'Elias' },
+  { text: 'La vez que mandaron la nota de voz de 8 minutos para decir algo que cabía en 3 palabras', culpable: 'Alesandra' },
+  { text: 'Cuando dijeron "yo pago" y nunca llegaron al billete', culpable: 'Mike' },
+  { text: 'El plan que "era seguro" y salió completamente diferente al 100%', culpable: 'Isaac Hamui' },
+  { text: 'La vez que alguien explicó un chiste y lo mató completamente en el proceso', culpable: 'Gabriel' },
+  { text: 'Cuando el grupo entero esperó respuesta y apareció el doble check azul sin respuesta por 3 días', culpable: 'Camila' },
+  { text: 'El momento en que alguien dijo "te lo dije" exactamente 0.3 segundos después del evento', culpable: 'Sarah' },
+  { text: 'La confusión histórica entre Benji y Beny que duró un chat entero sin resolverse', culpable: 'Benji & Beny' },
+  { text: 'Cuando Helena supo el chisme antes que las personas involucradas en el chisme', culpable: 'Helena' },
+  { text: 'El día que alguien respondió "ya llegué" pero nadie lo había preguntado', culpable: 'Elias' }
+];
+
+function renderMomentos() {
+  const list = document.getElementById('momentos-list');
+  [...momentos].reverse().forEach((m, i) => {
+    const num = momentos.length - i;
+    const el = document.createElement('div');
+    el.className = 'momento-item';
+    el.innerHTML = `
+      <div class="momento-num">${num}</div>
+      <div class="momento-content">
+        <div class="momento-text">${m.text}</div>
+        <span class="culpable-tag">🔴 CULPABLE PRINCIPAL: ${m.culpable}</span>
+      </div>
+    `;
+    list.appendChild(el);
+  });
+}
+
+// =====================
+// AWARDS
+// =====================
+const awards = [
+  { emoji: '🏆', name: 'Premio al Último en Leer el Grupo', winner: 'Benji', speech: 'Gracias, no había visto este mensaje hasta ahora. Perdón.' },
+  { emoji: '🥇', name: 'Oscar al Mejor Actor de que No Sabía Nada', winner: 'Gabriel', speech: 'Yo de eso no sé nada. Juro. Primer vez que escucho.' },
+  { emoji: '🎖️', name: 'Medalla de Oro en Excusas Creativas', winner: 'Mike', speech: 'Es que se me pinchó la llanta del perro en el tráfico del médico.' },
+  { emoji: '🏅', name: 'Premio a la Respuesta más Tardía de la Historia', winner: 'Camila', speech: 'Jaja qué chistoso. ¿Eso fue reciente?' },
+  { emoji: '🎪', name: 'Galardón al Drama Innecesario del Año', winner: 'Alesandra', speech: 'No es drama, es que nadie entiende lo que estoy viviendo.' },
+  { emoji: '🚨', name: 'Trofeo a la Idea más Mala que Sonó Bien en el Momento', winner: 'Isaac Hamui', speech: 'Confiaban en mí. Había potencial. Yo creo.' },
+  { emoji: '🎯', name: 'Premio al Plan que Nunca Se Concretó', winner: 'Elias', speech: 'Íbamos a ir, ya mero. La próxima sí.' },
+  { emoji: '💀', name: 'Premio Póstumo al Chiste que Nadie Entendió', winner: 'Beny', speech: 'Era gracioso. Ustedes no tienen nivel cultural suficiente.' }
+];
+
+function renderAwards() {
+  const grid = document.getElementById('awards-grid');
+  awards.forEach(a => {
+    const el = document.createElement('div');
+    el.className = 'award-card';
+    el.innerHTML = `
+      <span class="award-emoji">${a.emoji}</span>
+      <div class="award-name">${a.name}</div>
+      <div class="award-winner">${a.winner}</div>
+      <div class="award-speech">${a.speech}</div>
+    `;
+    grid.appendChild(el);
+  });
+}
+
+// =====================
+// HEADLINES
+// =====================
+const headlines = [
+  {
+    text: 'BREAKING: Miembro de La Vaada Mac llega a tiempo; testigos en shock, algunos lloran',
+    date: '12 Jun 2025',
+    reporter: 'Corresponsal J. Pérez'
+  },
+  {
+    text: 'EXCLUSIVA: Plan del grupo cancelado por séptima vez consecutiva este mes — nadie se sorprende',
+    date: '8 Jun 2025',
+    reporter: 'Enviada especial M. García'
+  },
+  {
+    text: 'URGENTE: Nota de voz de 11 minutos enviada; destinatarios solicitan subtítulos y resumen ejecutivo',
+    date: '5 Jun 2025',
+    reporter: 'Redacción central'
+  },
+  {
+    text: 'INVESTIGACIÓN: Quién pagó la última vez — nadie recuerda, nadie admite, todos acusan',
+    date: '1 Jun 2025',
+    reporter: 'Unidad de investigación'
+  },
+  {
+    text: 'ÚLTIMA HORA: Doble check azul detectado; respuesta aún no ha llegado 72 horas después',
+    date: '28 May 2025',
+    reporter: 'Fuente anónima de WhatsApp'
+  },
+  {
+    text: 'FLASH: Miembro afirma "ya llegué" — GPS muestra ubicación a 25 minutos de distancia',
+    date: '21 May 2025',
+    reporter: 'Satélite espía del grupo'
+  }
+];
+
+function renderHeadlines() {
+  const grid = document.getElementById('headlines-grid');
+  headlines.forEach(h => {
+    const el = document.createElement('div');
+    el.className = 'headline-card';
+    el.innerHTML = `
+      <span class="exclusiva-badge">🔴 EXCLUSIVA</span>
+      <p class="headline-text">${h.text}</p>
+      <div class="headline-meta">📅 ${h.date} &nbsp;·&nbsp; ✍️ ${h.reporter}</div>
+    `;
+    grid.appendChild(el);
+  });
+}
+
+// =====================
+// MODAL
+// =====================
+function openModal() {
+  document.getElementById('report-modal').classList.add('open');
+}
+function closeModal() {
+  document.getElementById('report-modal').classList.remove('open');
+}
+document.getElementById('report-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// =====================
+// SOUND (Web Audio API)
+// =====================
+function playBoing() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const sounds = [
+      () => {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.connect(g); g.connect(ctx.destination);
+        o.type = 'sine';
+        o.frequency.setValueAtTime(600, ctx.currentTime);
+        o.frequency.exponentialRampToValueAtTime(200, ctx.currentTime + 0.3);
+        g.gain.setValueAtTime(0.3, ctx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+        o.start(); o.stop(ctx.currentTime + 0.3);
+      },
+      () => {
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.connect(g); g.connect(ctx.destination);
+        o.type = 'square';
+        o.frequency.setValueAtTime(150, ctx.currentTime);
+        o.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.15);
+        g.gain.setValueAtTime(0.15, ctx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
+        o.start(); o.stop(ctx.currentTime + 0.2);
+      },
+      () => {
+        [0, 0.05, 0.1].forEach((t, i) => {
+          const o = ctx.createOscillator();
+          const g = ctx.createGain();
+          o.connect(g); g.connect(ctx.destination);
+          o.frequency.value = 440 * (i + 1);
+          g.gain.setValueAtTime(0.1, ctx.currentTime + t);
+          g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + t + 0.15);
+          o.start(ctx.currentTime + t);
+          o.stop(ctx.currentTime + t + 0.15);
+        });
+      }
+    ];
+    sounds[Math.floor(Math.random() * sounds.length)]();
+  } catch(e) {}
+}
+
+// =====================
+// NUCLEAR MODE
+// =====================
+function activateNuclearMode() {
+  document.body.classList.toggle('nuclear-mode');
+  if (document.body.classList.contains('nuclear-mode')) {
+    launchConfetti();
+    document.getElementById('nuclear-btn').textContent = '💥 MODO NUCLEAR ACTIVO 💥';
+    document.getElementById('nuclear-btn').style.color = 'rgba(255,50,50,0.6)';
+  } else {
+    document.getElementById('confetti-container').innerHTML = '';
+    document.getElementById('nuclear-btn').textContent = 'modo nuclear';
+    document.getElementById('nuclear-btn').style.color = '';
+  }
+}
+
+function launchConfetti() {
+  const container = document.getElementById('confetti-container');
+  const colors = ['#cc0000','#FFD700','#fff','#ff6b6b','#ffd166','#06d6a0'];
+  for (let i = 0; i < 150; i++) {
+    setTimeout(() => {
+      const piece = document.createElement('div');
+      piece.className = 'confetti-piece';
+      piece.style.cssText = `
+        left: ${Math.random() * 100}vw;
+        top: -20px;
+        background: ${colors[Math.floor(Math.random() * colors.length)]};
+        width: ${Math.random() * 12 + 6}px;
+        height: ${Math.random() * 12 + 6}px;
+        border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+        animation-duration: ${Math.random() * 2 + 2}s;
+        animation-delay: ${Math.random() * 0.5}s;
+      `;
+      container.appendChild(piece);
+      setTimeout(() => piece.remove(), 4000);
+    }, i * 20);
+  }
+}
+
+// =====================
+// HOVER ROAST REFRESH
+// =====================
+function refreshRoasts() {
+  document.querySelectorAll('.member-card').forEach((card, i) => {
+    const m = members[i];
+    card.addEventListener('mouseenter', () => {
+      const tooltip = card.querySelector('.roast-tooltip');
+      if (tooltip) tooltip.textContent = m.roasts[Math.floor(Math.random() * m.roasts.length)];
+    });
+  });
+}
+
+// =====================
+// INIT
+// =====================
+renderCards();
+renderGallery();
+renderMomentos();
+renderAwards();
+renderHeadlines();
+refreshRoasts();
+
+// Remove flash overlay after animation
+setTimeout(() => {
+  const flash = document.getElementById('flash-overlay');
+  if (flash) flash.remove();
+}, 2500);
+</script>
+</body>
+</html>
